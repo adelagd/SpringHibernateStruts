@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="myPackage" extends="struts-default">
+        <action name="persons" class="com.adelagd.crud.web.PersonAction" method="listPersons">
+            <result>/WEB-INF/jsp/users.jsp</result>
+        </action>
+
+        <!-- Let us use same actionMapping to load new User page and edit existing user page.
+         We differentiate the action based on ID check in UserAction class-->
+        <action name="newPerson" class="com.adelagd.crud.web.PersonAction" method="newPerson">
+            <result>/WEB-INF/jsp/addUser.jsp</result>
+        </action>
+
+        <!-- One mapping to create new user or save existing user. We differentiate the action based
+        on ID check in UserAction class-->
+        <action name="savePerson" class="com.adelagd.crud.web.PersonAction" method="savePerson">
+            <result name="input">/WEB-INF/jsp/addUser.jsp</result>
+            <result name="success" type="redirect">/users.action</result>
+        </action>
+
+        <action name="deletePerson" class="com.adelagd.crud.web.PersonAction" method="deletePerson">
+            <result name="success" type="redirect">/users.action</result>
+        </action>
+    </package>
+</struts>
